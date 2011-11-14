@@ -42,10 +42,11 @@ package com.deadwest.breeding.view
 			this.model = model;
 			
 			setupBreedingTable();
+			setupBreedBox();
 			setupBreedingListeners();
 			setupBreedButton();
 			setupBreedDelayBar();
-			setupBreedDataGrid();
+			setupBreedGridData();
 		}
 		
 		private function setupBreedingTable():void 
@@ -55,6 +56,7 @@ package com.deadwest.breeding.view
 			breederPanel = new BreederPanel();
 			breederPanel.x = margin;
 			breederPanel.y = margin;
+			model.setBreedPanel(breederPanel);
 			
 			var dimensions : Point = new Point(breederPanel.dimensionPanel.width, breederPanel.dimensionPanel.height);
 
@@ -65,6 +67,12 @@ package com.deadwest.breeding.view
 			stageClip = model.getStageClip();
 			stageClip.addChild(breedingTable);
 			breedingTable.addChild(breederPanel);
+		}
+		
+		private function setupBreedBox():void
+		{
+			breederPanel.descriptionBox.editable = false;
+			breederPanel.descriptionBox.textField.mouseEnabled = false;
 		}
 		
 		private function setupBreedingListeners():void 
@@ -114,16 +122,15 @@ package com.deadwest.breeding.view
 			breederPanel.breedDelayBar.mode = ProgressBarMode.MANUAL;
 		}
 		
-		private function setupBreedDataGrid() : void 
+		private function setupBreedGridData() : void 
 		{
-			dataGridController = new DataGridController(breederPanel.breedDataGrid);
-			inventoryDataParser = new InventoryDefinitionParser(GlobalConstants.BREED_TABLE_CONTENT_PATH, model, this.populateGrid);
+			inventoryDataParser = new InventoryDefinitionParser(GlobalConstants.BREED_TABLE_CONTENT_PATH, model, this.createGridController);
 			inventoryDataParser.init();
 		}
 		
-		public function populateGrid() : void
+		public function createGridController() : void
 		{
-			trace("FUCKITY FUCK FUCK");
+			dataGridController = new DataGridController(model);
 		}
 		
 		public function destroy() : void

@@ -1,5 +1,6 @@
 package com.deadwest.breeding.model 
 {
+	import com.deadwest.breeding.BreederPanel;
 	import flash.display.MovieClip;
 	/**
 	 * ...
@@ -7,8 +8,9 @@ package com.deadwest.breeding.model
 	 */
 	public class BreedingModel 
 	{
-		private var stageClip : MovieClip;
-		private var itemList : Vector.<InventoryItem>;
+		private var stageClip 		: MovieClip;
+		private var itemList 		: Vector.<InventoryItem>;
+		private var breederPanel 	: BreederPanel;
 		
 		public function BreedingModel() 
 		{
@@ -33,6 +35,16 @@ package com.deadwest.breeding.model
 		public function setItemList(itemList : Vector.<InventoryItem>) : void 
 		{
 			this.itemList = itemList;
+		}
+		
+		public function setBreedPanel(breederPanel : BreederPanel) : void 
+		{
+			this.breederPanel = breederPanel;
+		}
+		
+		public function getBreedPanel() : BreederPanel
+		{
+			return breederPanel;
 		}
 	}
 }

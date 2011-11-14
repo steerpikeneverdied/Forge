@@ -3,6 +3,5 @@
 	<columns>
 		<column name="Name"			width="100"/>
 		<column name="Rarity"		width="34" />
-		<column name="Description"	width="200"/>
 	</columns>
 </data>
