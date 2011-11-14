@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<columns>
+		<column name="Name"			width="100"/>
+		<column name="Rarity"		width="34" />
+		<column name="Description"	width="200"/>
+	</columns>
+</data>

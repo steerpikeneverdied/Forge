@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<inventoryTemplate>
+		<item name="Pebble" 			id="1" 	family="Stones" 		combination="     " comboquantity="     " 	rarity="0" description="A small pebble."/>
+		<item name="Grey Pebble" 		id="2"	family="Stones" 		combination=" 1,11"	comboquantity=" 1, 1" 	rarity="0" description="A sturdy flat pebble."/>
+		<item name="White Pebble" 		id="3"	family="Stones" 		combination=" 1, 2"	comboquantity=" 1, 2" 	rarity="1" description="This stone is a misty white."/>
+		<item name="Flawed Opal" 		id="4"	family="Stones" 		combination=" 2, 3"	comboquantity=" 3, 2" 	rarity="1" description="A common gem used in trading."/>
+		<item name="Sapphire"		 	id="5"  family="Stones" 		combination=" 4,15" comboquantity=" 2, 2" 	rarity="2" description="Its deep blue hue makes it valuable."/>
+		<item name="Crooked Rock" 		id="6"	family="Stones" 		combination=" 2, 5"	comboquantity=" 3, 2" 	rarity="2" description="A sinister crag from a far away peak."/>
+		<item name="Jade"			 	id="7" 	family="Stones" 		combination=" 4, 5" comboquantity=" 2, 1" 	rarity="3" description="Lucent green stone from the far East."/>
+		<item name="Diamond" 			id="8"	family="Stones" 		combination=" 7,15"	comboquantity=" 1, 2" 	rarity="4" description="The many polished facets gleam brilliantly."/>
+		<item name="Holy Crystal" 		id="9"	family="Stones" 		combination=" 3, 8"	comboquantity=" 5, 3" 	rarity="5" description="Shines with a soft glow, banishing evil and calming the soul."/>
+		<item name="Demonic Quartz"		id="10"	family="Stones" 		combination=" 9,19"	comboquantity=" 2, 1" 	rarity="7" description="Pure hatred formed from the eye of a dead god."/>
+		
+		<item name="Twig" 				id="11" family="Vegetation" 	combination="     " comboquantity="     " 	rarity="0" description="A leafy twig."/>
+		<item name="Branch"		 		id="12"	family="Vegetation" 	combination="11,11"	comboquantity=" 1, 1" 	rarity="0" description="A solid branch."/>
+		<item name="Bleachwood" 		id="13"	family="Vegetation" 	combination=" 3,12"	comboquantity=" 2, 1" 	rarity="1" description="Pale wood used in shields."/>
+		<item name="Red Leaf" 			id="14"	family="Vegetation" 	combination=" 4,13"	comboquantity=" 3, 3" 	rarity="1" description="Leathery textured leaf."/>
+		<item name="Steel Acorn"		id="15" family="Vegetation" 	combination="13,14" comboquantity=" 1, 2" 	rarity="2" description="Metallic kernel."/>
+		<item name="Frostbark"	 		id="16"	family="Vegetation" 	combination=" 5,13"	comboquantity=" 3, 1" 	rarity="2" description="Flexible and versatile, this bark is used in crafting."/>
+		<item name="Coarsethorn"		id="17" family="Vegetation" 	combination=" 6,16" comboquantity=" 2, 1" 	rarity="3" description="Handle this with care - the thorns are as sharp as steel."/>
+		<item name="White Rose" 		id="18"	family="Vegetation" 	combination=" 3,17"	comboquantity="10, 1" 	rarity="4" description="A rarely found fragile beauty"/>
+		<item name="Demon Seed"			id="19"	family="Vegetation" 	combination=" 8,18"	comboquantity=" 2, 3" 	rarity="5" description="It is said that this seed will grow into a towering inferno."/>
+		<item name="White Steel Oak"	id="20"	family="Vegetation" 	combination="15,18"	comboquantity=" 3, 2" 	rarity="7" description="Once every thousand years the legendary White Oak yields this wood."/>
+	</inventoryTemplate>
+</data>
