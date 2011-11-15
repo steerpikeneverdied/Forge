@@ -24,10 +24,12 @@
       <path-element>C:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>C:\Users\Simon\forge\breeding_panels.swc</path-element>
+      <path-element>C:\Users\Simon\forge\Forge.swc</path-element>
     </library-path>
   </compiler>
-  <file-specs />
+  <file-specs>
+    <path-element>C:\Users\Simon\forge\src\com\deadwest\forge\LoaderHook.as</path-element>
+  </file-specs>
   <default-background-color>#C1C1FF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
   <default-size>

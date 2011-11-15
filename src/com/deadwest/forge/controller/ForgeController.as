@@ -16,7 +16,6 @@ package com.deadwest.forge.controller
 		private var forgingModel		: ForgingModel;
 		private var stageClip 			: MovieClip;
 		private var view				: ForgingPanelView;
-
 		
 		public function ForgeController(baseClip : MovieClip) 
 		{
