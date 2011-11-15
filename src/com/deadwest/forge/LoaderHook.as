@@ -32,7 +32,7 @@ package com.deadwest.forge
 			
 			stage.addChild(baseClip);
 			
-			breedingController = new ForgingController(baseClip);
+			breedingController = new ForgeController(baseClip);
 		}
 		
 		public function destroy() : void

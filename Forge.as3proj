@@ -51,6 +51,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="breeding_panels.swc" />
+    <element path="Forge.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

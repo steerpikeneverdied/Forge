@@ -11,7 +11,7 @@ package com.deadwest.forge.model
 		public static const MARGIN			: int = 10;
 		public static const FORGE_TABLE_CONFIG_PATH 	: String = "../src/com/deadwest/forge/xml/ForgeTable.xml";
 		public static const FORGE_TABLE_CONTENT_PATH 	: String = "../src/com/deadwest/forge/xml/ItemList.xml";
-		public static const FOREG_BUTTON_NAME			: String = "Forge";
+		public static const FORGE_BUTTON_NAME			: String = "Forge";
 
 	}
 

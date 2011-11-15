@@ -37,9 +37,9 @@ package com.deadwest.forge.model
 			this.itemList = itemList;
 		}
 		
-		public function setForgePanel(ForgePanel : ForgePanel) : void 
+		public function setForgePanel(forgePanel : ForgePanel) : void 
 		{
-			this.breederPanel = breederPanel;
+			this.forgePanel = forgePanel;
 		}
 		
 		public function getForgePanel() : ForgePanel

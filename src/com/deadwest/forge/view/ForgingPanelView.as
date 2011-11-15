@@ -53,14 +53,14 @@ package com.deadwest.forge.view
 		{
 			var margin : int = GlobalConstants.MARGIN;
 			
-			forgePanel = new BreederPanel();
+			forgePanel = new ForgePanel();
 			forgePanel.x = margin;
 			forgePanel.y = margin;
 			model.setForgePanel(forgePanel);
 			
 			var dimensions : Point = new Point(forgePanel.dimensionPanel.width, forgePanel.dimensionPanel.height);
 
-			forgingTable = BreedingTableFactory.create(dimensions.x + margin*2, dimensions.y + margin*2);
+			forgingTable = ForgingTableFactory.create(dimensions.x + margin*2, dimensions.y + margin*2);
 			forgingTable.x = (GlobalConstants.STAGE_WIDTH - TABLE_WIDTH) /2;
 			forgingTable.y = (GlobalConstants.STAGE_HEIGHT - TABLE_HEIGHT) /2;
 			
@@ -82,9 +82,9 @@ package com.deadwest.forge.view
 		
 		private function onForgeComplete(e:Event):void 
 		{
-			if (forgePanel.breedDataGrid.selectedItem)
+			if (forgePanel.forgeDataGrid.selectedItem)
 			{
-				trace(forgePanel.breedDataGrid.selectedItem.Name);
+				trace(forgePanel.forgeDataGrid.selectedItem.Name);
 			}
 		}
 		
@@ -104,7 +104,7 @@ package com.deadwest.forge.view
 		{
 			if (buttonTime < buttonTimeTarget)
 			{
-				buttonTime += breedSpeed;
+				buttonTime += forgeSpeed;
 			} else {
 				buttonTime = 0;
 				forgePanel.forgeButton.removeEventListener(Event.ENTER_FRAME, handleButtonEnterFrame);
@@ -150,7 +150,7 @@ package com.deadwest.forge.view
 			{
 				if (stageClip.hasEventListener(ForgingEvent.FORGE_COMPLETE))
 				{
-					stageClip.removeEventListener(ForgingEvent.FORGE_COMPLETE, onBreedComplete);
+					stageClip.removeEventListener(ForgingEvent.FORGE_COMPLETE, onForgeComplete);
 				}
 			}
 			
