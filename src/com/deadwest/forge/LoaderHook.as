@@ -1,6 +1,6 @@
-package com.deadwest.breeding
+package com.deadwest.forge
 {
-	import com.deadwest.breeding.controller.BreedingController;
+	import com.deadwest.forge.controller.ForgingController;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -9,10 +9,10 @@ package com.deadwest.breeding
 	 * ...
 	 * @author Simon Hill
 	 */
-	[Frame(factoryClass="com.deadwest.breeding.Preloader")]
+	[Frame(factoryClass="com.deadwest.forge.Preloader")]
 	public class LoaderHook extends Sprite 
 	{
-		private var breedingController	: BreedingController;
+		private var breedingController	: ForgingController;
 		private var baseClip			: MovieClip;
 
 		public function LoaderHook() : void
@@ -32,7 +32,7 @@ package com.deadwest.breeding
 			
 			stage.addChild(baseClip);
 			
-			breedingController = new BreedingController(baseClip);
+			breedingController = new ForgingController(baseClip);
 		}
 		
 		public function destroy() : void

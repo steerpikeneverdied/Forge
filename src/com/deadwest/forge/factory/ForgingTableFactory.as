@@ -1,4 +1,4 @@
-package com.deadwest.breeding.factory 
+package com.deadwest.forge.factory 
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -6,7 +6,7 @@ package com.deadwest.breeding.factory
 	 * ...
 	 * @author ...
 	 */
-	public class BreedingTableFactory 
+	public class ForgingTableFactory 
 	{
 		static private var stageTarget	: DisplayObject;
 		

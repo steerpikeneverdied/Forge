@@ -1,17 +1,17 @@
-package com.deadwest.breeding.view 
+package com.deadwest.forge.view 
 {
 	import flash.display.Sprite;
 	/**
 	 * ...
 	 * @author ...
 	 */
-	public class BreedingTable 
+	public class ForgingTable 
 	{
 		private var table 		: Sprite;
 		private var tableWidth	: Number;
 		private var tableHeight	: Number;
 		
-		public function BreedingTable(tableWidth : Number, tableHeight : Number) : Sprite
+		public function ForgingTable(tableWidth : Number, tableHeight : Number) : Sprite
 		{
 			this.tableWidth = tableWidth;
 			this.tableHeight = tableHeight;

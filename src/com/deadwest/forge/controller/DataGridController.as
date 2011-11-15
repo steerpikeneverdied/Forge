@@ -1,10 +1,10 @@
-package com.deadwest.breeding.controller 
+package com.deadwest.forge.controller 
 {
-	import com.deadwest.breeding.BreederPanel;
-	import com.deadwest.breeding.format.WordWrapCellRenderer;
-	import com.deadwest.breeding.model.BreedingModel;
-	import com.deadwest.breeding.model.GlobalConstants;
-	import com.deadwest.breeding.model.InventoryItem;
+	import com.deadwest.forge.ForgePanel;
+	import com.deadwest.forge.format.WordWrapCellRenderer;
+	import com.deadwest.forge.model.ForgingModel;
+	import com.deadwest.forge.model.GlobalConstants;
+	import com.deadwest.forge.model.InventoryItem;
 	import fl.controls.DataGrid;
 	import fl.controls.dataGridClasses.DataGridColumn;
 	import fl.controls.listClasses.CellRenderer;
@@ -23,18 +23,18 @@ package com.deadwest.breeding.controller
 	 */
 	public class DataGridController
 	{
-		private var model			: BreedingModel;
+		private var model			: ForgingModel;
 		private var dataGrid 		: DataGrid;
 		private var gridGuide		: DisplayObjectContainer;
 		private var dataProvider	: DataProvider;
 		private var itemList		: Vector.<InventoryItem>;
-		private var mainPanel		: BreederPanel;
+		private var mainPanel		: ForgePanel;
 		
-		public function DataGridController(model : BreedingModel) : void
+		public function DataGridController(model : ForgingModel) : void
 		{
 			this.model = model;
-			this.mainPanel = model.getBreedPanel();
-			this.dataGrid = mainPanel.breedDataGrid;
+			this.mainPanel = model.getForgePanel();
+			this.dataGrid = mainPanel.forgeDataGrid;
 			
 			dataGrid.rowHeight = 30;
 			dataGrid.addEventListener(MouseEvent.CLICK, handleMouseClick);
@@ -59,7 +59,7 @@ package com.deadwest.breeding.controller
 		
 		private function requestTableSettings() : void
 		{
-			var configRequest : URLRequest = new URLRequest(GlobalConstants.BREED_TABLE_CONFIG_PATH); 
+			var configRequest : URLRequest = new URLRequest(GlobalConstants.FORGE_TABLE_CONFIG_PATH); 
 			var configLoader : URLLoader = new URLLoader;
  
 			configLoader.load(configRequest); 

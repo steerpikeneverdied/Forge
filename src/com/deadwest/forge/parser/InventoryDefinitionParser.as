@@ -1,7 +1,7 @@
-package com.deadwest.breeding.parser 
+package com.deadwest.forge.parser 
 {
-	import com.deadwest.breeding.model.BreedingModel;
-	import com.deadwest.breeding.model.InventoryItem;
+	import com.deadwest.forge.model.ForgingModel;
+	import com.deadwest.forge.model.InventoryItem;
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -11,10 +11,10 @@ package com.deadwest.breeding.parser
 	public class InventoryDefinitionParser 
 	{
 		private var xmlPath				: String;
-		private var model				: BreedingModel;
+		private var model				: ForgingModel;
 		private var xmlCompleteCallback	: Function;
 		
-		public function InventoryDefinitionParser(xmlPath : String, model : BreedingModel, xmlCompleteCallback : Function = null)
+		public function InventoryDefinitionParser(xmlPath : String, model : ForgingModel, xmlCompleteCallback : Function = null)
 		{
 			this.xmlPath = xmlPath;
 			this.model = model;

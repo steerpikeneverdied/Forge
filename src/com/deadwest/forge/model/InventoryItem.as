@@ -1,4 +1,4 @@
-package com.deadwest.breeding.model 
+package com.deadwest.forge.model 
 {
 	/**
 	 * @author simonh

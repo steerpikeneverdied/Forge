@@ -1,18 +1,18 @@
-package com.deadwest.breeding.model 
+package com.deadwest.forge.model 
 {
-	import com.deadwest.breeding.BreederPanel;
+	import com.deadwest.forge.ForgePanel;
 	import flash.display.MovieClip;
 	/**
 	 * ...
 	 * @author ...
 	 */
-	public class BreedingModel 
+	public class ForgingModel 
 	{
 		private var stageClip 		: MovieClip;
 		private var itemList 		: Vector.<InventoryItem>;
-		private var breederPanel 	: BreederPanel;
+		private var forgePanel 	: ForgePanel;
 		
-		public function BreedingModel() 
+		public function ForgingModel() 
 		{
 			
 		}
@@ -37,14 +37,14 @@ package com.deadwest.breeding.model
 			this.itemList = itemList;
 		}
 		
-		public function setBreedPanel(breederPanel : BreederPanel) : void 
+		public function setForgePanel(ForgePanel : ForgePanel) : void 
 		{
 			this.breederPanel = breederPanel;
 		}
 		
-		public function getBreedPanel() : BreederPanel
+		public function getForgePanel() : ForgePanel
 		{
-			return breederPanel;
+			return forgePanel;
 		}
 	}
 }

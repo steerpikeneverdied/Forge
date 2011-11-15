@@ -1,4 +1,4 @@
-package com.deadwest.breeding
+package com.deadwest.forge
 {
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -61,7 +61,7 @@ package com.deadwest.breeding
 		
 		private function startup():void 
 		{
-			var mainClass:Class = getDefinitionByName("com.deadwest.breeding.LoaderHook") as Class;
+			var mainClass:Class = getDefinitionByName("com.deadwest.forge.LoaderHook") as Class;
 			addChild(new mainClass() as DisplayObject);
 		}
 		
