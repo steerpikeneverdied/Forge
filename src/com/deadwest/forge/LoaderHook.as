@@ -1,6 +1,6 @@
 package com.deadwest.forge
 {
-	import com.deadwest.forge.controller.ForgingController;
+	import com.deadwest.forge.controller.ForgeController;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -12,7 +12,7 @@ package com.deadwest.forge
 	[Frame(factoryClass="com.deadwest.forge.Preloader")]
 	public class LoaderHook extends Sprite 
 	{
-		private var breedingController	: ForgingController;
+		private var breedingController	: ForgeController;
 		private var baseClip			: MovieClip;
 
 		public function LoaderHook() : void

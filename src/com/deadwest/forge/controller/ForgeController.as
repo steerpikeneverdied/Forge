@@ -11,14 +11,14 @@ package com.deadwest.forge.controller
 	 * ...
 	 * @author ...
 	 */
-	public class BreedingController 
+	public class ForgeController 
 	{
 		private var forgingModel		: ForgingModel;
 		private var stageClip 			: MovieClip;
 		private var view				: ForgingPanelView;
 
 		
-		public function BreedingController(baseClip : MovieClip) 
+		public function ForgeController(baseClip : MovieClip) 
 		{
 			this.stageClip = baseClip;
 			

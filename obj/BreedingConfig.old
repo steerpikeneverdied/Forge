@@ -16,19 +16,19 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'14/11/2011'</value>
+      <value>'15/11/2011'</value>
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>C:\Users\Simon\Desktop\Current Dev\Breeding\src</path-element>
+      <path-element>C:\Users\Simon\forge\src</path-element>
       <path-element>C:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>C:\Users\Simon\Desktop\Current Dev\Breeding\breeding_panels.swc</path-element>
+      <path-element>C:\Users\Simon\forge\breeding_panels.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>C:\Users\Simon\Desktop\Current Dev\Breeding\src\com\deadwest\breeding\LoaderHook.as</path-element>
+    <path-element>C:\Users\Simon\forge\src\com\deadwest\forge\LoaderHook.as</path-element>
   </file-specs>
   <default-background-color>#C1C1FF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

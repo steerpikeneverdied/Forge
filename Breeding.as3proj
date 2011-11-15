@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="build\Breeding.swf" />
+    <movie path="build\Forge.swf" />
     <movie fps="30" />
     <movie width="700" />
     <movie height="500" />
@@ -70,7 +70,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\com\deadwest\breeding\LoaderHook.as" />
+    <compile path="src\com\deadwest\forge\LoaderHook.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
