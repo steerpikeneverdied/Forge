@@ -6,6 +6,7 @@ package com.deadwest.forge.view
 	import com.deadwest.forge.factory.ForgingTableFactory;
 	import com.deadwest.forge.model.ForgingModel;
 	import com.deadwest.forge.model.GlobalConstants;
+	import com.deadwest.forge.model.InventoryItem;
 	import com.deadwest.forge.parser.InventoryDefinitionParser;
 	import fl.controls.DataGrid;
 	import fl.controls.ProgressBarDirection;
@@ -35,16 +36,21 @@ package com.deadwest.forge.view
 		private var dataGridController	: DataGridController;
 		private var inventoryDataParser : InventoryDefinitionParser;
 		private var model				: ForgingModel;
+		private var selectedItem		: InventoryItem;
+		private var item1				: InventoryItem;
+		private var item2				: InventoryItem;
 
 		
 		public function ForgingPanelView(model : ForgingModel)
 		{
 			this.model = model;
 			
+			model.setForgePanelView(this);
+			
 			setupForgingTable();
-			setupForgeBox();
+			setupTextBoxes();
 			setupForgingListeners();
-			setupForgeButton();
+			setupForgeButtons();
 			setupForgeDelayBar();
 			setupForgeGridData();
 		}
@@ -69,10 +75,16 @@ package com.deadwest.forge.view
 			forgingTable.addChild(forgePanel);
 		}
 		
-		private function setupForgeBox():void
+		private function setupTextBoxes():void
 		{
 			forgePanel.descriptionBox.editable = false;
 			forgePanel.descriptionBox.textField.mouseEnabled = false;
+			
+			forgePanel.ingredient1Name.editable = false;
+			forgePanel.ingredient1Name.textField.mouseEnabled = false;
+			
+			forgePanel.ingredient2Name.editable = false;
+			forgePanel.ingredient2Name.textField.mouseEnabled = false;
 		}
 		
 		private function setupForgingListeners():void 
@@ -82,20 +94,28 @@ package com.deadwest.forge.view
 		
 		private function onForgeComplete(e:Event):void 
 		{
-			if (forgePanel.forgeDataGrid.selectedItem)
-			{
-				trace(forgePanel.forgeDataGrid.selectedItem.Name);
-			}
+			resetForgeView();
 		}
 		
-		private function setupForgeButton():void 
+		private function setupForgeButtons():void 
 		{
 			forgePanel.forgeButton.label = GlobalConstants.FORGE_BUTTON_NAME;
+			forgePanel.forgeButton.enabled = false;
 			forgePanel.forgeButton.addEventListener(MouseEvent.CLICK, handleForgeButtonClicked);
+			
+			forgePanel.selectButton.label = GlobalConstants.SELECT_BUTTON_NAME;
+			forgePanel.selectButton.enabled = false;
+			forgePanel.selectButton.addEventListener(MouseEvent.CLICK, handleSelectButtonClicked);
+			
+			forgePanel.cancelButton.label = GlobalConstants.CANCEL_BUTTON_NAME;
+			forgePanel.cancelButton.enabled = false;
+			forgePanel.cancelButton.addEventListener(MouseEvent.CLICK, handleCancelButtonClicked);
 		}
 						
 		private function handleForgeButtonClicked(e:MouseEvent):void 
 		{
+			clearItemText();
+			resetButtons();
 			forgePanel.forgeButton.addEventListener(Event.ENTER_FRAME, handleButtonEnterFrame);
 			forgePanel.forgeButton.enabled = false;
 		}
@@ -108,11 +128,59 @@ package com.deadwest.forge.view
 			} else {
 				buttonTime = 0;
 				forgePanel.forgeButton.removeEventListener(Event.ENTER_FRAME, handleButtonEnterFrame);
-				forgePanel.forgeButton.enabled = true;
 				dispatchEvent(new ForgingEvent(ForgingEvent.FORGE_COMPLETE));
 			}
 			
 			forgePanel.forgeDelayBar.setProgress(buttonTime, buttonTimeTarget);
+		}
+		
+		private function handleSelectButtonClicked(e:MouseEvent):void 
+		{
+			dataGridController.dataGrid.selectedItem = null;
+			forgePanel.selectButton.enabled = false;
+			forgePanel.cancelButton.enabled = true;
+			
+			if (item1 == null)
+			{
+				forgePanel.ingredient1Name.text = selectedItem.getName();
+				item1 = selectedItem;
+			} else {
+				forgePanel.ingredient2Name.text = selectedItem.getName();
+				item2 = selectedItem;
+				forgePanel.forgeButton.enabled = true;
+			}
+		}
+		
+		private function handleCancelButtonClicked(e:MouseEvent):void 
+		{
+			resetForgeView();
+		}
+		
+		public function resetForgeView() : void
+		{
+			clearItemText();
+			clearItemData();
+			resetButtons();
+		}
+		
+		private function clearItemText():void 
+		{
+			forgePanel.descriptionBox.text = "";
+			forgePanel.ingredient1Name.text = "";
+			forgePanel.ingredient2Name.text = "";
+		}
+		
+		private function clearItemData():void 
+		{
+			item1 = null;
+			item2 = null;
+			selectedItem = null;
+		}
+		
+		private function resetButtons():void 
+		{
+			forgePanel.selectButton.enabled = false;
+			forgePanel.cancelButton.enabled = false;
 		}
 				
 		private function setupForgeDelayBar():void 
@@ -131,6 +199,16 @@ package com.deadwest.forge.view
 		public function createGridController() : void
 		{
 			dataGridController = new DataGridController(model);
+		}
+		
+		public function setItemSelected(item : InventoryItem) : void 
+		{
+			selectedItem = item;
+			
+			if (item2 == null)
+			{
+				forgePanel.selectButton.enabled = true;
+			}
 		}
 		
 		public function destroy() : void

@@ -23,8 +23,8 @@ package com.deadwest.forge.controller
 	 */
 	public class DataGridController
 	{
+		public var dataGrid 		: DataGrid;
 		private var model			: ForgingModel;
-		private var dataGrid 		: DataGrid;
 		private var gridGuide		: DisplayObjectContainer;
 		private var dataProvider	: DataProvider;
 		private var itemList		: Vector.<InventoryItem>;
@@ -47,12 +47,18 @@ package com.deadwest.forge.controller
 		{
 			if(dataGrid.isItemSelected !== null)
 			{
-				for each(var item : InventoryItem in model.getItemList())
+				displaySelectedItem();
+			}
+		}
+		
+		private function displaySelectedItem():void 
+		{
+			for each(var item : InventoryItem in model.getItemList())
+			{
+				if (item.getName() == dataGrid.selectedItem.Name)
 				{
-					if (item.getName() == dataGrid.selectedItem.Name)
-					{
-						mainPanel.descriptionBox.text = item.getDescription();
-					}
+					mainPanel.descriptionBox.text = item.getDescription();
+					model.getForgePanelView().setItemSelected(item);
 				}
 			}
 		}

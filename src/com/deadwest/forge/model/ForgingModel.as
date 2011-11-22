@@ -1,6 +1,7 @@
 package com.deadwest.forge.model 
 {
 	import com.deadwest.forge.ForgePanel;
+	import com.deadwest.forge.view.ForgingPanelView;
 	import flash.display.MovieClip;
 	/**
 	 * ...
@@ -8,9 +9,10 @@ package com.deadwest.forge.model
 	 */
 	public class ForgingModel 
 	{
-		private var stageClip 		: MovieClip;
-		private var itemList 		: Vector.<InventoryItem>;
-		private var forgePanel 	: ForgePanel;
+		private var stageClip 			: MovieClip;
+		private var itemList 			: Vector.<InventoryItem>;
+		private var forgePanel 			: ForgePanel;
+		private var forgingPanelView 	: ForgingPanelView;
 		
 		public function ForgingModel() 
 		{
@@ -45,6 +47,16 @@ package com.deadwest.forge.model
 		public function getForgePanel() : ForgePanel
 		{
 			return forgePanel;
+		}
+		
+		public function setForgePanelView(forgingPanelView : ForgingPanelView) : void
+		{
+			this.forgingPanelView = forgingPanelView;
+		}
+				
+		public function getForgePanelView() : ForgingPanelView
+		{
+			return forgingPanelView;
 		}
 	}
 }
