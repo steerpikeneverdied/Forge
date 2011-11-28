@@ -1,5 +1,7 @@
 package com.deadwest.forge.view
 {
+	import com.deadwest.forge.controller.ForgePanelController;
+	import com.deadwest.forge.event.ForgingDataEvent;
 	import com.deadwest.forge.ForgePanel;
 	import com.deadwest.forge.controller.DataGridController;
 	import com.deadwest.forge.event.ForgingEvent;
@@ -29,11 +31,12 @@ package com.deadwest.forge.view
 		private var forgeDataGrid		: DataGrid;
 		
 		private const TABLE_WIDTH 		: int = 500;
-		private const TABLE_HEIGHT 		: int = 200;
+		private const TABLE_HEIGHT 		: int = 300;
 		private var buttonTime 			: int = 0;
 		private var buttonTimeTarget	: int = 100;
 		private var forgeSpeed			: int = 5;
 		private var dataGridController	: DataGridController;
+		private var forgePanelController: ForgePanelController;
 		private var inventoryDataParser : InventoryDefinitionParser;
 		private var model				: ForgingModel;
 		private var selectedItem		: InventoryItem;
@@ -45,11 +48,10 @@ package com.deadwest.forge.view
 		{
 			this.model = model;
 			
-			model.setForgePanelView(this);
-			
 			setupForgingTable();
 			setupTextBoxes();
 			setupForgingListeners();
+			setupForgePanelController();
 			setupForgeButtons();
 			setupForgeDelayBar();
 			setupForgeGridData();
@@ -89,7 +91,8 @@ package com.deadwest.forge.view
 		
 		private function setupForgingListeners():void 
 		{
-			addEventListener(ForgingEvent.FORGE_COMPLETE, onForgeComplete);
+			forgePanel.addEventListener(ForgingEvent.FORGE_COMPLETE, onForgeComplete);
+			forgePanel.addEventListener(ForgingDataEvent.ITEM_SELECTED, onItemSelected);
 		}
 		
 		private function onForgeComplete(e:Event):void 
@@ -128,7 +131,7 @@ package com.deadwest.forge.view
 			} else {
 				buttonTime = 0;
 				forgePanel.forgeButton.removeEventListener(Event.ENTER_FRAME, handleButtonEnterFrame);
-				dispatchEvent(new ForgingEvent(ForgingEvent.FORGE_COMPLETE));
+				forgePanel.dispatchEvent(new ForgingEvent(ForgingEvent.FORGE_COMPLETE));
 			}
 			
 			forgePanel.forgeDelayBar.setProgress(buttonTime, buttonTimeTarget);
@@ -196,14 +199,19 @@ package com.deadwest.forge.view
 			inventoryDataParser.init();
 		}
 		
+		private function setupForgePanelController():void 
+		{
+			forgePanelController = new ForgePanelController(this, model);
+		}
+		
 		public function createGridController() : void
 		{
 			dataGridController = new DataGridController(model);
 		}
 		
-		public function setItemSelected(item : InventoryItem) : void 
+		public function onItemSelected(event : ForgingDataEvent) : void 
 		{
-			selectedItem = item;
+			selectedItem = event.data as InventoryItem;
 			
 			if (item2 == null)
 			{
@@ -219,6 +227,17 @@ package com.deadwest.forge.view
 				{
 					forgePanel.removeEventListener(Event.ENTER_FRAME, handleButtonEnterFrame);
 				}
+				
+				if (forgePanel.forgeButton.hasEventListener(MouseEvent.CLICK))
+				{
+					forgePanel.forgeButton.removeEventListener(MouseEvent.CLICK, handleForgeButtonClicked)				
+				}
+				
+				if (forgePanel.hasEventListener(ForgingDataEvent.ITEM_SELECTED))
+				{
+					forgePanel.removeEventListener(ForgingDataEvent.ITEM_SELECTED, onItemSelected);
+				}
+				
 				forgePanel.forgeButton.removeEventListener(MouseEvent.CLICK, handleForgeButtonClicked)
 				forgePanel.parent.removeChild(forgePanel);
 				forgePanel = null;

@@ -2,6 +2,6 @@
 <data>
 	<columns>
 		<column name="Name"			width="100"/>
-		<column name="Rarity"		width="34" />
+		<column name="Quantity"		width="34" />
 	</columns>
 </data>
