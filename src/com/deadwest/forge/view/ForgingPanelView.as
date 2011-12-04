@@ -1,7 +1,5 @@
 package com.deadwest.forge.view
 {
-	import com.deadwest.forge.controller.ForgePanelController;
-	import com.deadwest.forge.event.ForgingDataEvent;
 	import com.deadwest.forge.ForgePanel;
 	import com.deadwest.forge.controller.DataGridController;
 	import com.deadwest.forge.event.ForgingEvent;
@@ -31,12 +29,11 @@ package com.deadwest.forge.view
 		private var forgeDataGrid		: DataGrid;
 		
 		private const TABLE_WIDTH 		: int = 500;
-		private const TABLE_HEIGHT 		: int = 300;
+		private const TABLE_HEIGHT 		: int = 200;
 		private var buttonTime 			: int = 0;
 		private var buttonTimeTarget	: int = 100;
 		private var forgeSpeed			: int = 5;
 		private var dataGridController	: DataGridController;
-		private var forgePanelController: ForgePanelController;
 		private var inventoryDataParser : InventoryDefinitionParser;
 		private var model				: ForgingModel;
 		private var selectedItem		: InventoryItem;
@@ -48,10 +45,11 @@ package com.deadwest.forge.view
 		{
 			this.model = model;
 			
+			model.setForgePanelView(this);
+			
 			setupForgingTable();
 			setupTextBoxes();
 			setupForgingListeners();
-			setupForgePanelController();
 			setupForgeButtons();
 			setupForgeDelayBar();
 			setupForgeGridData();
@@ -137,7 +135,7 @@ package com.deadwest.forge.view
 			} else {
 				buttonTime = 0;
 				forgePanel.forgeButton.removeEventListener(Event.ENTER_FRAME, handleButtonEnterFrame);
-				forgePanel.dispatchEvent(new ForgingEvent(ForgingEvent.FORGE_COMPLETE));
+				dispatchEvent(new ForgingEvent(ForgingEvent.FORGE_COMPLETE));
 			}
 			
 			forgePanel.forgeDelayBar.setProgress(buttonTime, buttonTimeTarget);
@@ -211,19 +209,14 @@ package com.deadwest.forge.view
 			inventoryDataParser.init();
 		}
 		
-		private function setupForgePanelController():void 
-		{
-			forgePanelController = new ForgePanelController(this, model);
-		}
-		
 		public function createGridController() : void
 		{
 			dataGridController = new DataGridController(model);
 		}
 		
-		public function onItemClicked(event : ForgingDataEvent) : void 
+		public function onItemClicked(event : ForgingDataEvent) : void
 		{
-			selectedItem = event.data as InventoryItem;
+			selectedItem = item;
 			
 			if (item2 == null)
 			{
@@ -259,7 +252,6 @@ package com.deadwest.forge.view
 				{
 					forgePanel.removeEventListener(ForgingDataEvent.FORGE_SUCCESSFUL, onForgeSuccess);
 				}
-				
 				forgePanel.forgeButton.removeEventListener(MouseEvent.CLICK, handleForgeButtonClicked)
 				forgePanel.parent.removeChild(forgePanel);
 				forgePanel = null;
