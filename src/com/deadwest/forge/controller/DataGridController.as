@@ -1,7 +1,5 @@
 package com.deadwest.forge.controller 
 {
-	import com.deadwest.forge.event.ForgingDataEvent;
-	import com.deadwest.forge.event.ForgingEvent;
 	import com.deadwest.forge.ForgePanel;
 	import com.deadwest.forge.format.WordWrapCellRenderer;
 	import com.deadwest.forge.model.ForgingModel;
@@ -15,7 +13,6 @@ package com.deadwest.forge.controller
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -24,7 +21,7 @@ package com.deadwest.forge.controller
 	 * ...
 	 * @author simonh
 	 */
-	public class DataGridController extends EventDispatcher
+	public class DataGridController
 	{
 		public var dataGrid 		: DataGrid;
 		private var model			: ForgingModel;
@@ -32,7 +29,6 @@ package com.deadwest.forge.controller
 		private var dataProvider	: DataProvider;
 		private var itemList		: Vector.<InventoryItem>;
 		private var mainPanel		: ForgePanel;
-		private var configLoader	: URLLoader;
 		
 		public function DataGridController(model : ForgingModel) : void
 		{
@@ -62,7 +58,7 @@ package com.deadwest.forge.controller
 				if (item.getName() == dataGrid.selectedItem.Name)
 				{
 					mainPanel.descriptionBox.text = item.getDescription();
-					mainPanel.dispatchEvent(new ForgingDataEvent(ForgingDataEvent.ITEM_SELECTED, item));
+					model.getForgePanelView().setItemSelected(item);
 				}
 			}
 		}
@@ -70,7 +66,7 @@ package com.deadwest.forge.controller
 		private function requestTableSettings() : void
 		{
 			var configRequest : URLRequest = new URLRequest(GlobalConstants.FORGE_TABLE_CONFIG_PATH); 
-			configLoader = new URLLoader();
+			var configLoader : URLLoader = new URLLoader;
  
 			configLoader.load(configRequest); 
 			configLoader.addEventListener(Event.COMPLETE, configCompleteHandler);
@@ -101,37 +97,13 @@ package com.deadwest.forge.controller
 			for each(var item : InventoryItem in itemList)
 			{
 				dataProvider.addItem( {
-					"Name" 			: item.getName()
+					"Name" 			: item.getName(),
+					"Rarity" 		: item.getRarity(),
+					"Description" 	: item.getDescription()
 				});
 			}
 			
 			dataGrid.dataProvider = dataProvider;
-		}
-		
-		public function destroy() : void
-		{
-			if (configLoader)
-			{
-				configLoader.removeEventListener(Event.COMPLETE, configCompleteHandler)
-				configLoader.close()
-				configLoader = null;
-			}
-			
-			if (dataProvider)
-			{
-				dataProvider.removeAll();
-				dataProvider = null;
-			}
-			
-			if (dataGrid)
-			{
-				if (dataGrid.hasEventListener(MouseEvent.CLICK))
-				{
-					dataGrid.removeEventListener(MouseEvent.CLICK, handleMouseClick);
-				}
-				dataGrid.parent.removeChild(dataGrid);
-				dataGrid = null;
-			}
 		}
 	}
 }

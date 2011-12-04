@@ -48,5 +48,15 @@ package com.deadwest.forge.model
 		{
 			return forgePanel;
 		}
+		
+		public function setForgePanelView(forgingPanelView : ForgingPanelView) : void
+		{
+			this.forgingPanelView = forgingPanelView;
+		}
+				
+		public function getForgePanelView() : ForgingPanelView
+		{
+			return forgingPanelView;
+		}
 	}
 }
