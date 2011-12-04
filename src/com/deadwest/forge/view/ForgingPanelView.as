@@ -1,5 +1,6 @@
 package com.deadwest.forge.view
 {
+	import com.deadwest.forge.event.ForgingDataEvent;
 	import com.deadwest.forge.ForgePanel;
 	import com.deadwest.forge.controller.DataGridController;
 	import com.deadwest.forge.event.ForgingEvent;
@@ -135,7 +136,7 @@ package com.deadwest.forge.view
 			} else {
 				buttonTime = 0;
 				forgePanel.forgeButton.removeEventListener(Event.ENTER_FRAME, handleButtonEnterFrame);
-				dispatchEvent(new ForgingEvent(ForgingEvent.FORGE_COMPLETE));
+				forgePanel.dispatchEvent(new ForgingEvent(ForgingEvent.FORGE_COMPLETE));
 			}
 			
 			forgePanel.forgeDelayBar.setProgress(buttonTime, buttonTimeTarget);
@@ -216,7 +217,7 @@ package com.deadwest.forge.view
 		
 		public function onItemClicked(event : ForgingDataEvent) : void
 		{
-			selectedItem = item;
+			selectedItem = event.data as InventoryItem;
 			
 			if (item2 == null)
 			{

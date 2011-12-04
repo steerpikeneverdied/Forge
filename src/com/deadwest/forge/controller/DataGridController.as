@@ -1,5 +1,6 @@
 package com.deadwest.forge.controller 
 {
+	import com.deadwest.forge.event.ForgingDataEvent;
 	import com.deadwest.forge.ForgePanel;
 	import com.deadwest.forge.format.WordWrapCellRenderer;
 	import com.deadwest.forge.model.ForgingModel;

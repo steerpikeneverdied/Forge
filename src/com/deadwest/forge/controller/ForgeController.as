@@ -16,6 +16,7 @@ package com.deadwest.forge.controller
 		private var forgingModel		: ForgingModel;
 		private var stageClip 			: MovieClip;
 		private var view				: ForgingPanelView;
+		private var controller			: ForgePanelController;
 		
 		public function ForgeController(baseClip : MovieClip) 
 		{
@@ -23,6 +24,7 @@ package com.deadwest.forge.controller
 			
 			createForgingModel();
 			createForgingPanelView();
+			createForgePanelController();
 		}
 		
 		private function createForgingModel() : void 
@@ -34,6 +36,11 @@ package com.deadwest.forge.controller
 		private function createForgingPanelView() : void
 		{
 			this.view = new ForgingPanelView(forgingModel);
+		}
+		
+		private function createForgePanelController():void 
+		{
+			this.controller = new ForgePanelController(view, forgingModel);
 		}
 		
 		private function destroy() : void
