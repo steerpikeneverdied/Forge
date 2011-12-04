@@ -7,7 +7,9 @@ package com.deadwest.forge.event
 	 */
 	public class ForgingDataEvent extends Event
 	{
+		public static const ITEM_CLICKED 			: String = "BreedingDataEvent::ITEM_CLICKED";
 		public static const ITEM_SELECTED 			: String = "BreedingDataEvent::ITEM_SELECTED";
+		public static const FORGE_SUCCESSFUL 		: String = "BreedingDataEvent::FORGE_SUCCESSFUL";
 		
 		public var data		: Object;
 		public var name 	: String;

@@ -62,7 +62,7 @@ package com.deadwest.forge.controller
 				if (item.getName() == dataGrid.selectedItem.Name)
 				{
 					mainPanel.descriptionBox.text = item.getDescription();
-					mainPanel.dispatchEvent(new ForgingDataEvent(ForgingDataEvent.ITEM_SELECTED, item));
+					mainPanel.dispatchEvent(new ForgingDataEvent(ForgingDataEvent.ITEM_CLICKED, item));
 				}
 			}
 		}

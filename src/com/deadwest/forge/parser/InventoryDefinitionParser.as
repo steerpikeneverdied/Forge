@@ -54,8 +54,8 @@ package com.deadwest.forge.parser
 				inventoryItem.setName			(row.@name);
 				inventoryItem.setId				(row.@id);
 				inventoryItem.setFamily			(row.@family);
-				inventoryItem.setCombination	(row.@combination as Array);
-				inventoryItem.setComboquantity	(row.@comboquantity as Array);
+				inventoryItem.setCombination	(row.@combination);
+				inventoryItem.setComboquantity	(row.@comboquantity);
 				inventoryItem.setRarity			(row.@rarity);
 				inventoryItem.setDescription	(row.@description);
 				

@@ -89,18 +89,24 @@ package com.deadwest.forge.view
 			forgePanel.ingredient2Name.textField.mouseEnabled = false;
 		}
 		
-		private function setupForgingListeners():void 
+		private function setupForgingListeners() : void 
 		{
+			forgePanel.addEventListener(ForgingDataEvent.ITEM_CLICKED, onItemClicked);
 			forgePanel.addEventListener(ForgingEvent.FORGE_COMPLETE, onForgeComplete);
-			forgePanel.addEventListener(ForgingDataEvent.ITEM_SELECTED, onItemSelected);
+			forgePanel.addEventListener(ForgingDataEvent.FORGE_SUCCESSFUL, onForgeSuccess);
 		}
 		
-		private function onForgeComplete(e:Event):void 
+		private function onForgeComplete(e:Event) : void 
 		{
 			resetForgeView();
 		}
 		
-		private function setupForgeButtons():void 
+		private function onForgeSuccess(event : ForgingDataEvent) : void
+		{
+			forgePanel.resultBox.text = String((event.data as InventoryItem).getName());
+		}
+		
+		private function setupForgeButtons() : void 
 		{
 			forgePanel.forgeButton.label = GlobalConstants.FORGE_BUTTON_NAME;
 			forgePanel.forgeButton.enabled = false;
@@ -143,15 +149,20 @@ package com.deadwest.forge.view
 			forgePanel.selectButton.enabled = false;
 			forgePanel.cancelButton.enabled = true;
 			
+			var currentItemNumber : int = 0;
 			if (item1 == null)
 			{
 				forgePanel.ingredient1Name.text = selectedItem.getName();
 				item1 = selectedItem;
+				currentItemNumber = 1;
 			} else {
 				forgePanel.ingredient2Name.text = selectedItem.getName();
 				item2 = selectedItem;
 				forgePanel.forgeButton.enabled = true;
+				currentItemNumber = 2;
 			}
+			
+			forgePanel.dispatchEvent(new ForgingDataEvent(ForgingDataEvent.ITEM_SELECTED, [selectedItem, currentItemNumber]));
 		}
 		
 		private function handleCancelButtonClicked(e:MouseEvent):void 
@@ -171,6 +182,7 @@ package com.deadwest.forge.view
 			forgePanel.descriptionBox.text = "";
 			forgePanel.ingredient1Name.text = "";
 			forgePanel.ingredient2Name.text = "";
+			forgePanel.resultBox.text = "";
 		}
 		
 		private function clearItemData():void 
@@ -209,7 +221,7 @@ package com.deadwest.forge.view
 			dataGridController = new DataGridController(model);
 		}
 		
-		public function onItemSelected(event : ForgingDataEvent) : void 
+		public function onItemClicked(event : ForgingDataEvent) : void 
 		{
 			selectedItem = event.data as InventoryItem;
 			
@@ -233,22 +245,24 @@ package com.deadwest.forge.view
 					forgePanel.forgeButton.removeEventListener(MouseEvent.CLICK, handleForgeButtonClicked)				
 				}
 				
-				if (forgePanel.hasEventListener(ForgingDataEvent.ITEM_SELECTED))
+				if (forgePanel.hasEventListener(ForgingDataEvent.ITEM_CLICKED))
 				{
-					forgePanel.removeEventListener(ForgingDataEvent.ITEM_SELECTED, onItemSelected);
+					forgePanel.removeEventListener(ForgingDataEvent.ITEM_CLICKED, onItemClicked);
+				}
+				
+				if (forgePanel.hasEventListener(ForgingEvent.FORGE_COMPLETE))
+				{
+					forgePanel.removeEventListener(ForgingEvent.FORGE_COMPLETE, onForgeComplete);
+				}
+				
+				if (forgePanel.hasEventListener(ForgingDataEvent.FORGE_SUCCESSFUL))
+				{
+					forgePanel.removeEventListener(ForgingDataEvent.FORGE_SUCCESSFUL, onForgeSuccess);
 				}
 				
 				forgePanel.forgeButton.removeEventListener(MouseEvent.CLICK, handleForgeButtonClicked)
 				forgePanel.parent.removeChild(forgePanel);
 				forgePanel = null;
-			}
-			
-			if (stageClip)
-			{
-				if (stageClip.hasEventListener(ForgingEvent.FORGE_COMPLETE))
-				{
-					stageClip.removeEventListener(ForgingEvent.FORGE_COMPLETE, onForgeComplete);
-				}
 			}
 			
 			if (forgingTable)

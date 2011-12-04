@@ -68,9 +68,9 @@ package com.deadwest.forge.model
 			return combination;
 		}
 		
-		public function setCombination(combination : Array) : void 
+		public function setCombination(combination : String) : void 
 		{
-			this.combination = combination;
+			this.combination = combination.split(",");
 		}
 		
 		public function getComboquantity() : Array 
@@ -78,9 +78,9 @@ package com.deadwest.forge.model
 			return comboquantity;
 		}
 		
-		public function setComboquantity(comboquantity : Array) : void 
+		public function setComboquantity(comboquantity : String) : void 
 		{
-			this.comboquantity = comboquantity;
+			this.comboquantity = comboquantity.split(",");
 		}
 	}
 }
